@@ -1,0 +1,22 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Explicitly declare text files you want to always normalize and convert to
+# platform-specific line endings on checkout.
+*.md text
+*.txt text
+*.html text
+*.css text
+*.scss text
+*.js text
+*.ts text
+*.java text
+*.xml text
+*.yml text
+*.properties text
+*.gitignore text
+*.gitattributes text
+
+# Declare files that will always have CRLF line endings on checkout.
+*.cmd text eol=crlf
+*.bat text eol=crlf
