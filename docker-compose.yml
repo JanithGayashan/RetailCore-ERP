@@ -1,0 +1,54 @@
+# This file defines all the external services our development environment needs.
+# We will start with just one service: our PostgreSQL database.
+
+version: '3.8' # A standard version for the docker-compose file format.
+
+services:
+  # We are defining a service and naming it 'postgres'.
+  postgres:
+    # 'image' tells Docker which pre-built container image to download from Docker Hub.
+    # We are using the official PostgreSQL image, version 16, with the 'alpine' tag,
+    # which is a lightweight and secure version.
+    image: postgres:16-alpine
+
+    # 'container_name' gives our running container a friendly, predictable name.
+    container_name: retailcore-postgres-db
+
+    # 'environment' sets up the internal configuration of the PostgreSQL container when it first starts.
+    environment:
+      # This sets the username for the database superuser.
+      # You will use 'postgres' to connect from your Spring Boot app.
+      POSTGRES_USER: postgres
+
+      # This sets the password for the 'postgres' user.
+      # !!! YOU MUST CHOOSE A PASSWORD HERE !!!
+      # For local development, 'admin123' is simple.
+      POSTGRES_PASSWORD: Gayashan7442
+
+      # This tells the container to automatically create an empty database with this name.
+      # This MUST match the database name in your application.properties.
+      POSTGRES_DB: retailcore_db
+
+    # 'ports' maps a port from your laptop to a port inside the container.
+    # The format is "HOST_PORT:CONTAINER_PORT".
+    # This line means: "Any connection to port 5432 on my laptop (localhost)
+    # should be forwarded to port 5432 inside the postgres container."
+    ports:
+      - "5432:5432"
+
+    # 'volumes' create persistent storage. Without this, all your database data
+    # would be deleted if you remove the container.
+    # This line creates a special Docker-managed folder named 'postgres-data' and
+    # links it to the directory where PostgreSQL stores its data inside the container.
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+    # 'restart: unless-stopped' is a great quality-of-life setting. It tells Docker
+    # to automatically restart this container if it crashes or when you restart Docker Desktop,
+    # unless you have manually stopped it yourself.
+    restart: unless-stopped
+
+# This top-level 'volumes' key formally declares the named volume we used above.
+volumes:
+  postgres-data:
+    driver: local
