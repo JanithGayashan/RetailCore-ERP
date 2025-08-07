@@ -84,6 +84,7 @@ public class ProductController {
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         // First, check if the product with the given ID exists in the database.
         Optional<Product> optionalProduct = productRepository.findById(id);
+        //after commit
 
         if (optionalProduct.isPresent()) {
             // If it exists, get the actual product object.
