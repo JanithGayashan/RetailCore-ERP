@@ -1,4 +1,4 @@
-package com.janith.retailcore.backend.Product;
+package com.janith.retailcore.backend.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

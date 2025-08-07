@@ -1,4 +1,4 @@
-package com.janith.retailcore.backend.Product;
+package com.janith.retailcore.backend.product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
